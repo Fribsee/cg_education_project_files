@@ -56,6 +56,7 @@ let courses = [
   ['Body Latexing', 'Art'],
   ['Noodle sculpting', 'Culinary']
 ];
+
 let enterDept = ()=> {return prompt('What department are you looking for a course in?')};
 let whatDept = enterDept().toLowerCase();
 switch(whatDept){
@@ -69,8 +70,36 @@ switch(whatDept){
   enterDept();
 }
 
+let courseFiltered = [];
+function filterByDept(array, dept){
+  for (let i = 0; i < array.length; i++){
+    if (array[i][1].toLowerCase()===dept)
+    {
+      courseFiltered.push(array[i][0]);
+    }
+  }
 
-// function course_Dept(course, depart){
-//   return courses.filter(depart)
-// };
-// console.log course__dept()
+}
+
+filterByDept(courses, whatDept);
+console.log(courseFiltered);
+
+// function howMany(selectObject) {
+//   var numberSelected = 0;
+//   for (var i = 0; i < selectObject.options.length; i++) {
+//     if (selectObject.options[i].selected) {
+//       numberSelected++;
+//     }
+//   }
+//   return numberSelected;
+// }
+
+
+// let chosenDept = courses.indexOf(whatDept);
+// console.log(chosenDept);
+//
+// function findCourse(course, depart){
+//  return course.filter(depart)
+//  };
+//  console.log(findCourse(courses, whatDept));
+// console.log course__Dept();
