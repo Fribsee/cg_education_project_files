@@ -23,7 +23,7 @@ console.log(`Student Name: ${studentName}
 console.log(`Department: ${courseDept}
   Course: ${courseTitle}`);
 
-  let teacherRatings = [rating1,rating2,rating3];
+  let teacherRatings = [rating1, rating2, rating3];
 
 
 
@@ -73,33 +73,34 @@ switch(whatDept){
 let courseFiltered = [];
 function filterByDept(array, dept){
   for (let i = 0; i < array.length; i++){
-    if (array[i][1].toLowerCase()===dept)
+    if (array[i][1].toLowerCase() === dept)
     {
       courseFiltered.push(array[i][0]);
     }
   }
-
 }
 
 filterByDept(courses, whatDept);
 console.log(courseFiltered);
 
-// function howMany(selectObject) {
-//   var numberSelected = 0;
-//   for (var i = 0; i < selectObject.options.length; i++) {
-//     if (selectObject.options[i].selected) {
-//       numberSelected++;
-//     }
-//   }
-//   return numberSelected;
-// }
+
+//CG education part 3
 
 
-// let chosenDept = courses.indexOf(whatDept);
-// console.log(chosenDept);
-//
-// function findCourse(course, depart){
-//  return course.filter(depart)
-//  };
-//  console.log(findCourse(courses, whatDept));
-// console.log course__Dept();
+ function graduationYear(){
+   return prompt('What is your graduation year?')
+ };
+
+function graduationMonth(){
+  return prompt('Will you graduate in May or December?')
+};
+let gradYear = graduationYear();
+let gradMonth = graduationMonth();
+
+while(gradMonth.toLowerCase() !== 'may' && gradMonth.toLowerCase() !== 'december'){
+  gradMonth = graduationMonth()};
+
+
+
+
+console.log(gradMonth);
