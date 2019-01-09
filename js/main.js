@@ -88,7 +88,7 @@ console.log(courseFiltered);
 
 
  function graduationYear(){
-   return prompt('What is your graduation year?')
+   return prompt('What is your college graduation year?')
  };
 
 function graduationMonth(){
@@ -100,7 +100,13 @@ let gradMonth = graduationMonth();
 while(gradMonth.toLowerCase() !== 'may' && gradMonth.toLowerCase() !== 'december'){
   gradMonth = graduationMonth()};
 
-
+if(gradYear >= 2019 && gradYear <= 2023){
+  console.log('You are in college.');
+} else if(gradYear >= 2024 && gradYear <= 2028){
+  console.log('You are in high school.');
+}
+  else{console.log('This graduation year is not in my purview.');
+}
 
 
 console.log(gradMonth);
