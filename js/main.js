@@ -93,20 +93,53 @@ console.log(courseFiltered);
 
 function graduationMonth(){
   return prompt('Will you graduate in May or December?')
-};
+ };
 let gradYear = graduationYear();
 let gradMonth = graduationMonth();
 
 while(gradMonth.toLowerCase() !== 'may' && gradMonth.toLowerCase() !== 'december'){
   gradMonth = graduationMonth()};
 
-if(gradYear >= 2019 && gradYear <= 2023){
-  console.log('You are in college.');
-} else if(gradYear >= 2024 && gradYear <= 2028){
-  console.log('You are in high school.');
-}
+
+let welcomeCollegeStudent = function(studentClass){
+  alert(`Welcome ${studentClass}!`)
+ };
+
+let welcomeHsStudent = function(studentClass){
+  alert(`You're still a ${studentClass} in high school!`)
+ };
+
+if(gradYear >= 2019 && gradYear <= 2022){
+  welcomeStudentsByGraduatingClass(gradMonth,gradYear,welcomeCollegeStudent);
+} else if(gradYear >= 2023 && gradYear <= 2027){
+  welcomeStudentsByGraduatingClass(gradMonth, gradYear, welcomeHsStudent);
+ }
   else{console.log('This graduation year is not in my purview.');
-}
+ }
 
 
-console.log(gradMonth);
+
+function welcomeStudentsByGraduatingClass(month,year,welcome){
+  let currentDate = new Date();
+  let gradDifference = year - currentDate.getFullYear();
+  switch(gradDifference){
+    case 0:
+    case 4:
+    welcome("Senior");
+  break;
+    case 1:
+    case 5:
+    welcome('Junior');
+  break;
+    case 2:
+    case 6:
+    welcome('Sophmore');
+  break;
+    case 3:
+    case 7:
+    welcome('Freshman');
+    break;
+    default:
+    alert("Get out of here, don't waste my time.")
+       }
+    }
