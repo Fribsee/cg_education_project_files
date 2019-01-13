@@ -1,16 +1,20 @@
 console.log("Pump up the jam!!");
-let teacherName = "Sally Jones";
-let department = "Physics";
-let rating1 = 3.4;
-let rating2 = 4.0;
-let rating3 = 5.0;
-console.log(
-`Teacher: ${teacherName}
-Department: ${department}
-Ratings: ${rating1.toFixed(1)}, ${rating2.toFixed(1)}, ${rating3.toFixed(1)}`);
+let teacher = {
+  name: "Sally Jones",
+  department: "Physics",
+  ratings: [3.4, 4.0, 5.0],
+  addTeacherRating(newRating){
+    this.ratings.push(newRating)},
+  avgTeacherRating: function()
+  {
+    this.ratings.reduce(function(accumulator, currentValue) {
+        return accumulator + currentValue / this.ratings.length}, 0);
+  }
+}
 
-let avgRating = (rating1 + rating2 + rating3)/3;
-console.log(`Avg. Rating: ${avgRating.toFixed(5)}`);
+console.log(teacher);
+
+
 
 let studentName = "Pete Davidson";
 let email = "This.that@gmail.com";
@@ -23,7 +27,6 @@ console.log(`Student Name: ${studentName}
 console.log(`Department: ${courseDept}
   Course: ${courseTitle}`);
 
-  let teacherRatings = [rating1, rating2, rating3];
 
 
 
@@ -32,20 +35,13 @@ console.log(`Department: ${courseDept}
 
     let newRating = enterTeacherRating();
 
-  while(!newRating || newRating < 0 || newRating >5){
+    while(!newRating || newRating < 0 || newRating >5){
       newRating = enterTeacherRating()};
 
 
-function addTeacherRating(array, rating){
-  return array.push(rating)};
 
-addTeacherRating(teacherRatings, newRating);
 
-let getRatingAvg =
-  teacherRatings.reduce((accumulator, currentValue)=>{
-   return accumulator + currentValue / teacherRatings.length}, 0);
-
-alert("Thanks for your review! " + teacherName + " average rating is now " + getRatingAvg);
+alert("Thanks for your review! " + teacher.name + " average rating is now " + getRatingAvg);
 console.log(teacherRatings);
 
 let courses = [
