@@ -1,20 +1,39 @@
 console.log("Pump up the jam!!");
+
 let teacher = {
   name: "Sally Jones",
   department: "Physics",
   ratings: [3.4, 4.0, 5.0],
-  addTeacherRating(newRating){
-    this.ratings.push(newRating)},
+  addTeacherRating: function(rating){
+    this.ratings.push(rating)},
   avgTeacherRating: function()
   {
-    this.ratings.reduce(function(accumulator, currentValue) {
-        return accumulator + currentValue / this.ratings.length}, 0);
+    return this.ratings.reduce(function(accumulator, currentValue,currentIndex,array) {
+        return accumulator + currentValue / array.length}, 0);
   }
 }
+// the this keyword is wonky therefore instead of calling this.ratings.length,
+// I had to use all parameters of the reduce function and call it
+// array.length and I am not entirely sure why, beyond having been 2 layers deep in
+// the teacher object rather than 1 like for the previous this.
 
-console.log(teacher);
+
+function enterTeacherRating(){
+  return Number(prompt('We would like for you to review. Please enter a rating between 0.0 and 5.0.'))
+};
+
+let newRating = enterTeacherRating();
 
 
+while(!newRating || newRating < 0 || newRating >5){
+  newRating = enterTeacherRating()
+};
+
+teacher.addTeacherRating(newRating);
+console.log(teacher.ratings);
+console.log(teacher.avgTeacherRating());
+
+alert("Thanks for your review! " + teacher.name + " average rating is now " + teacher.avgTeacherRating());
 
 let studentName = "Pete Davidson";
 let email = "This.that@gmail.com";
@@ -28,30 +47,15 @@ console.log(`Department: ${courseDept}
   Course: ${courseTitle}`);
 
 
-
-
-   function enterTeacherRating(){
-     return Number(prompt('We would like for you to review. Please enter a rating between 0.0 and 5.0.'))};
-
-    let newRating = enterTeacherRating();
-
-    while(!newRating || newRating < 0 || newRating >5){
-      newRating = enterTeacherRating()};
+let courses ={
+  name: ['Silly running', 'Pop-locking', 'Art 101', 'Body Latexing', 'Potato peeling', 'Noodle sculpting'],
+  department: ['Physical Education', 'Physical Education', 'Art', 'Art', 'Culinary', 'Culinary'],
+  teacher: ['Glenda Shorts', 'Sally Strong', 'Luther Bobross', 'Ed Kilnamanjaro', 'String Beanpole', 'Larry Wasserman'],
+  semester: ['May', 'December','May', 'December','May', 'December','May', 'December'],
+};
 
 
 
-
-alert("Thanks for your review! " + teacher.name + " average rating is now " + getRatingAvg);
-console.log(teacherRatings);
-
-let courses = [
-  ['Silly running', 'Physical Education'],
-  ['Art 101', 'Art'],
-  ['Potato peeling', 'Culinary'],
-  ['Pop-locking', 'Physical Education'],
-  ['Body Latexing', 'Art'],
-  ['Noodle sculpting', 'Culinary']
-];
 
 let enterDept = ()=> {return prompt('What department are you looking for a course in?')};
 let whatDept = enterDept().toLowerCase();
@@ -67,16 +71,16 @@ switch(whatDept){
 }
 
 let courseFiltered = [];
-function filterByDept(array, dept){
+function filterByDept(array, array2, dept){
   for (let i = 0; i < array.length; i++){
-    if (array[i][1].toLowerCase() === dept)
+    if (array[i].toLowerCase() === dept)
     {
-      courseFiltered.push(array[i][0]);
+      courseFiltered.push(array2[i]);
     }
   }
 }
 
-filterByDept(courses, whatDept);
+filterByDept(courses.department, courses.name, whatDept);
 console.log(courseFiltered);
 
 
