@@ -1,39 +1,55 @@
 console.log("Pump up the jam!!");
 
-let teacher = {
-  name: "Sally Jones",
-  department: "Physics",
-  ratings: [3.4, 4.0, 5.0],
-  addTeacherRating: function(rating){
-    this.ratings.push(rating)},
-  avgTeacherRating: function()
-  {
-    return this.ratings.reduce(function(accumulator, currentValue,currentIndex,array) {
-        return accumulator + currentValue / array.length}, 0);
-  }
+function enterTeacherRating(){
+  return Number(prompt('We would like for you to review. Please enter a rating between 0.0 and 5.0.'))
+};
+let newRating = enterTeacherRating();
+
+while(!newRating || newRating < 0 || newRating >5){
+  newRating = enterTeacherRating()
+};
+function Teacher (name, department, ratings) {
+  this.name = name;
+  this.department = department;
+  this.ratings = ratings;
+  this.addTeacherRating = function(rating)
+    {
+    this.ratings.push(rating)
+    };
+
+  this.avgRating = function()
+    {
+      return this.ratings.reduce(function(accumulator, currentValue,currentIndex,array) {
+          return accumulator + currentValue / array.length}, 0);
+    };
+  this.addRating = this.addTeacherRating(newRating);
 }
+
+let sallyTeacher = new Teacher("Sally Jones", "Physics", [3.4, 4.0, 5.0]);
+console.log(sallyTeacher.ratings);
 // the this keyword is wonky therefore instead of calling this.ratings.length,
 // I had to use all parameters of the reduce function and call it
 // array.length and I am not entirely sure why, beyond having been 2 layers deep in
 // the teacher object rather than 1 like for the previous this.
 
+// Here is another option for the avgTeacherRating function:
+// avgTeacherRating () {
+//     var total = 0;
+//     for(i=0; i < this.ratings.length; i++) {
+//       total = total + this.ratings[i];
+//     }
+//   return total / this.ratings.length;
+//   }
+// };
 
-function enterTeacherRating(){
-  return Number(prompt('We would like for you to review. Please enter a rating between 0.0 and 5.0.'))
-};
-
-let newRating = enterTeacherRating();
 
 
-while(!newRating || newRating < 0 || newRating >5){
-  newRating = enterTeacherRating()
-};
 
-teacher.addTeacherRating(newRating);
-console.log(teacher.ratings);
-console.log(teacher.avgTeacherRating());
 
-alert("Thanks for your review! " + teacher.name + " average rating is now " + teacher.avgTeacherRating());
+
+
+
+
 
 let studentName = "Pete Davidson";
 let email = "This.that@gmail.com";
@@ -55,7 +71,7 @@ let courses ={
 };
 
 
-
+console.log(courses.teacher[1]);
 
 let enterDept = ()=> {return prompt('What department are you looking for a course in?')};
 let whatDept = enterDept().toLowerCase();
