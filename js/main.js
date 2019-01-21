@@ -16,17 +16,15 @@ function Teacher (name, department, ratings) {
     {
     this.ratings.push(rating)
     };
+  this.addRating = this.addTeacherRating(newRating);
 
   this.avgRating = function()
     {
       return this.ratings.reduce(function(accumulator, currentValue,currentIndex,array) {
           return accumulator + currentValue / array.length}, 0);
     };
-  this.addRating = this.addTeacherRating(newRating);
+  alert(`The new average for ${this.name} is ${this.avgRating()}.` )
 }
-
-let sallyTeacher = new Teacher("Sally Jones", "Physics", [3.4, 4.0, 5.0]);
-console.log(sallyTeacher.ratings);
 // the this keyword is wonky therefore instead of calling this.ratings.length,
 // I had to use all parameters of the reduce function and call it
 // array.length and I am not entirely sure why, beyond having been 2 layers deep in
@@ -41,6 +39,12 @@ console.log(sallyTeacher.ratings);
 //   return total / this.ratings.length;
 //   }
 // };
+
+let sallyTeacher = new Teacher("Sally Jones", "Culinary", [3.4, 4.0, 5.0]);
+let glendaTeacher = new Teacher('Glenda Shorts', 'Physical Education', [2.1, 5.0, 1.2]);
+let lutherTeacher = new Teacher('Luther Bobross', 'Physical Education', [5.0, 4.9, 4.6]);
+let edTeacher = new Teacher('Ed Kilnamanjaro', 'Art', [3.5, 3.2, 4.8]);
+console.log(edTeacher)
 
 
 
@@ -62,42 +66,53 @@ console.log(`Student Name: ${studentName}
 console.log(`Department: ${courseDept}
   Course: ${courseTitle}`);
 
-
-let courses ={
-  name: ['Silly running', 'Pop-locking', 'Art 101', 'Body Latexing', 'Potato peeling', 'Noodle sculpting'],
-  department: ['Physical Education', 'Physical Education', 'Art', 'Art', 'Culinary', 'Culinary'],
-  teacher: ['Glenda Shorts', 'Sally Strong', 'Luther Bobross', 'Ed Kilnamanjaro', 'String Beanpole', 'Larry Wasserman'],
-  semester: ['May', 'December','May', 'December','May', 'December','May', 'December'],
-};
-
-
-console.log(courses.teacher[1]);
-
-let enterDept = ()=> {return prompt('What department are you looking for a course in?')};
-let whatDept = enterDept().toLowerCase();
-switch(whatDept){
-  case 'art':
-  break;
-  case 'physical education':
-  break;
-  case 'culinary':
-  break;
-  default:
-  enterDept();
-}
-
-let courseFiltered = [];
-function filterByDept(array, array2, dept){
-  for (let i = 0; i < array.length; i++){
-    if (array[i].toLowerCase() === dept)
-    {
-      courseFiltered.push(array2[i]);
-    }
+  let enterDept = ()=> {return prompt('What department are you looking for a course in?')};
+  let whatDept = enterDept().toLowerCase();
+  switch(whatDept){
+    case 'art':
+    break;
+    case 'physical education':
+    break;
+    case 'culinary':
+    break;
+    default:
+    enterDept();
   }
-}
 
-filterByDept(courses.department, courses.name, whatDept);
-console.log(courseFiltered);
+  let courseFiltered = [];
+
+function Course(name, department, teacher, semester){
+   this.name= name;
+   this.department = department;
+   this.teacher = teacher;
+   this.semester = semester;
+};
+  function filterByDept(){
+     for(i=0; i < courses.length; i++) {
+       if (whatDept === courses[i].department.toLowerCase()){
+        courseFiltered.push(courses[i].name);
+        }
+     }
+ };
+
+
+
+
+let courses = [];
+courses.push(new Course('Art 101','Art','Luther Bobross','May'));
+console.log(courses[0].name);
+courses.push(new Course('Body Latexing', 'Art', 'Ed Kilnamanjaro', 'December'));
+courses.push(new Course('Silly running','Physical Education', 'Glenda Shorts', 'May'));
+courses.push(new Course('Pop-locking', 'Physical Education', 'Sally Strong', 'December'));
+courses.push(new Course ('Potato peeling','Culinary', 'Larry Wasserman', 'December'));
+courses.push(new Course('Noodle sculpting', 'Culinary', 'String Beanpole', 'May'));
+console.log(courses);
+filterByDept();
+ console.log(courseFiltered);
+
+
+
+
 
 
 //CG education part 3
